@@ -5,6 +5,5 @@ Rails.application.routes.draw do
   get 'main/index'
   resources :operations
   resources :categories
-  resources :reports
   root "main#index"
 end
