@@ -1,14 +1,13 @@
-
-
 <div class="container">
   <br>
-  <%= render @category %>
+  <h2>Category info</h2>
+  <br>
 
-  
+  <%= render @category %>
 
   <div class="btn-group">
     <%= link_to "Edit this category", edit_category_path(@category), class: "btn btn-warning" %>
-    <%= link_to "Back to categories", categories_path, class: "btn btn-outline-primary"  %>
+    <%= link_to "Back to categories", categories_path, class: "btn btn-outline-primary" %>
   </div>
 
   <div class="divider" style="height: 5rem"></div>
@@ -17,12 +16,10 @@
     <div class="card-header">
       Danger zone
     </div>
+
     <div class="card-body">
-      
       <%= button_to "Destroy this category", @category, method: :delete, class: "btn btn-danger" %>
       <small class="text-muted">Warning: this action cannot be undone</small>
     </div>
   </div>
-
-
 </div>

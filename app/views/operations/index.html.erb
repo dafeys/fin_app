@@ -1,14 +1,8 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Operations</h1>
-
-<div id="operations">
-  <% @operations.each do |operation| %>
-    <%= render operation %>
-    <p>
-      <%= link_to "Show this operation", operation %>
-    </p>
-  <% end %>
+<div class="container">
+  <br>
+  <h2>Operations</h2>
+  <br>
+    <%= render 'operation_table' %>
+  <br>  
+  <%= link_to "New operation", new_operation_path, class:"btn btn-success" %>
 </div>
-
-<%= link_to "New operation", new_operation_path %>

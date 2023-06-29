@@ -1,22 +1,24 @@
 <div id="<%= dom_id operation %>">
-  <p>
-    <strong>Amount:</strong>
-    <%= operation.amount %>
-  </p>
-
-  <p>
-    <strong>Odate:</strong>
-    <%= operation.odate %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= operation.description %>
-  </p>
-
-  <p>
-    <strong>Category:</strong>
-    <%= operation.category_id %>
-  </p>
-
+  <div class="table-responsive">
+    <table class="table table-hover w-auto">
+      <tbody>
+        <tr>
+          <td class="table-light">Category name:</td>
+          <td><%= operation.category.name %></td>
+        </tr>
+        <tr>
+          <td class="table-light">Operation amount:</td>
+          <td><%= operation.amount %></td>
+        </tr>
+        <tr>
+          <td class="table-light">Description:</td>
+          <td><%= operation.description %></td>
+        </tr>
+        <tr>
+          <td class="table-light">Date of the transaction:</td>
+          <td><%= operation.odate %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
