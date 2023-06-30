@@ -1,2 +1,52 @@
-<h1>Reports#report_by_dates</h1>
-<p>Find me in app/views/reports/report_by_dates.html.erb</p>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div class="container">
+  <h2>Report for the period from <%= params[:date_start] %> to <%= params[:date_end] %></h2>
+
+
+
+
+  <br>
+
+<% @category_names.each_with_index do |element, index| %>
+  <%= element %>
+  <%= @category_costs[index] %>
+  <br>
+<% end %>
+
+
+<div class="container">
+  <canvas id="myChart"></canvas>
+</div>
+
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  const data = {
+      labels: <%= raw @category_names %>,
+      datasets: [{
+          label: 'Report by',
+          data: <%= raw @category_names %>,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+      }, {
+          label: 'Total Posts',
+          data: <%= raw @category_costs %>,
+          fill: false,
+          borderColor: 'rgb(75, 12, 192)',
+          tension: 0.1
+      }]
+  };
+
+  const config = {
+    type: 'doughnut',
+    data: data,
+  };
+
+  const myChart = new Chart(ctx, config)
+</script>
+
+</div>
+

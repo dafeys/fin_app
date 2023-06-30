@@ -1,0 +1,27 @@
+<div class="table-responsive">
+  <table class="table table-hover">
+    <!--Table head-->
+    <thead>
+      <tr class="table-secondary">
+        <th scope="col">Category</th>
+        <th scope="col">Cost</th>
+      </tr>
+    </thead>
+    <!--Table head-->
+
+    <!--Table body-->
+    <tbody>
+      <% @category_names.each_with_index do |category, index| %>
+        <tr>
+          <td scope="row"><%= category %></th>
+          <td><%= @category_costs[index] %></th>
+        </tr>
+      <% end %>
+      <tr class="table-info">
+        <th scope="row" colspan="2">Total cost: <%= @total_categories_cost %></th>
+
+    </tr>
+    </tbody>
+    <!--Table body-->
+  </table>
+</div>
