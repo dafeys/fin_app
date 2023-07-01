@@ -2,28 +2,46 @@ class ReportsController < ApplicationController
   def index
   end
 
+  def report
+    if params[:report_type] == "category"
+      report_by_category
+      render 'report_by_category'
+    elsif params[:report_type] == "dates"
+      report_by_dates
+      render 'report_by_dates'
+    end
+  end
+
   def report_by_category
+    date_range = parse_date_range
+
     category_totals = Category.joins(:operations)
-          .group(:id)
-          .select('categories.*, SUM(operations.amount) AS total_cost')
-    
-    data_for_chart = category_totals.map { |category| [category.name, category.total_cost] }
-    @category_names = data_for_chart.map { |name| name[0] }
-    @category_costs = data_for_chart.map { |cost| cost[1] }
+                              .where(operations: { odate: date_range })
+                              .group(:id)
+                              .pluck(:name, 'SUM(operations.amount) AS total_cost')
+                              #.select('categories.*, SUM(operations.amount) AS total_cost')
+        
+    @category_names, @category_costs = category_totals.transpose 
     @total_categories_cost = @category_costs.sum
   end
 
   def report_by_dates
-    #date_start = params[:date_start]
-    #date_end = params[:date_end]
-    #@operations = Operation.where(odate: date_start..date_end)
+    date_range = parse_date_range
 
-    category_totals = Category.joins(:operations)
-          .group(:id)
-          .select('categories.*, SUM(operations.amount) AS total_cost')
-    
-    data_for_chart = category_totals.map { |category| [category.name, category.total_cost] }
-    @category_names = data_for_chart.map { |name| name[0] }
-    @category_costs = data_for_chart.map { |cost| cost[1] }
+    daily_costs = Operation.group("DATE(odate)")
+                           .where(operations: { odate: date_range }) 
+                           .pluck("DATE(odate) AS day", "SUM(amount) AS total_cost")
+                           #.select("DATE(odate) AS day, SUM(amount) AS total_cost")
+
+    @days, @days_costs = daily_costs.transpose
   end
+
+  private
+
+  def parse_date_range
+    date_start = Date.parse(params[:date_start]).beginning_of_day
+    date_end = Date.parse(params[:date_end]).end_of_day
+    date_start..date_end
+  end
+
 end
