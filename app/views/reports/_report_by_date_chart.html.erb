@@ -8,16 +8,25 @@
   const ctx = document.getElementById('myChart');
 
   const data = {
-      labels: <%= raw @category_names %>,
+      labels: <%= raw @days %>,
       datasets: [{
-          data: <%= raw @category_costs %>,
-          hoverOffset: 4          
+          label: 'Day cost',
+          data: <%= raw @days_costs %>,
+          tension: 0.1,
+          fill: false        
       }]
   };
 
   const config = {
-    type: 'doughnut',
+    type: 'line',
     data: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
   };
 
   const myChart = new Chart(ctx, config)

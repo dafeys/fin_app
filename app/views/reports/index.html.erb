@@ -1,19 +1,21 @@
-<h1>Reports#index</h1>
-<p>Find me in app/views/reports/index.html.erb</p>
+<div class="container">
+  <h2>Reports Generation</h2>
+  <br>
+  <%= form_with url: reports_report_path, method: :get do |f|%>
+    <div class="form-group">
+      <%= f.label :date_start, "Starting from:" %>
+      <%= f.date_field :date_start, value: (Time.now-1.month).strftime('%Y-%m-%d'), class: "form-control", style: "width: 19rem" %><br>
+    </div>
 
-<%= form_with url: reports_report_by_category_path,method: :get do |f|%>
-  <%#= f.label :name, "Name:" %>
-  <%#= f.text_field :name %>
-  <%= f.label :date_start, "Date from:" %>
-  <%= f.date_field :date_start %><br>
-  <%= f.label :date_end, "Date to:" %>
-  <%= f.date_field :date_end %><br>
-  <%= f.collection_select :category_id, Category.order(:name), :id, :name %>
-  <input type="submit" value="Categories"><br>
-<% end %>
+    <div class="form-group">
+      <%= f.label :date_end, "Ending on:" %>
+      <%= f.date_field :date_end, value: Time.now.strftime('%Y-%m-%d'), max: Date.today.end_of_day, class: "form-control", style: "width: 19rem" %><br>
+    </div>
 
-<%= link_to "Categories", reports_report_by_category_path %>
-<%= link_to "Dates", reports_report_by_dates_path %>
-
-
+    <div class="btn-group">
+      <%= f.button "Report by Category", type: :submit, name: "report_type", value: "category", class: "btn btn-outline-primary" %>
+      <%= f.button "Report by Dates", type: :submit, name: "report_type", value: "dates", class: "btn btn-outline-primary" %>
+    </div>
+  <% end %>
+ </div>
 

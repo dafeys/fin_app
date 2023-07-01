@@ -1,11 +1,12 @@
 <div class="container">
-  <br>
   <h2>Editing category</h2>
   <br>
   <%= render "form", category: @category %>
   <br>
+
   <div class="btn-group">
     <%= link_to "Show this category", @category, class: "btn btn-secondary" %>
     <%= link_to "Back to categories", categories_path, class: "btn btn-outline-primary" %>
   </div>
+  
 </div>
