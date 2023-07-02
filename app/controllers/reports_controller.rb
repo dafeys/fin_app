@@ -22,7 +22,16 @@ class ReportsController < ApplicationController
                               #.select('categories.*, SUM(operations.amount) AS total_cost')
         
     @category_names, @category_costs = category_totals.transpose 
-    @total_categories_cost = @category_costs.sum
+
+    if @category_costs.kind_of?(Array)
+      @total_categories_cost = @category_costs.sum
+    else
+      @category_costs = ['-']
+      @category_names = ['-']
+      @total_categories_cost = 0
+    end
+
+
   end
 
   def report_by_dates

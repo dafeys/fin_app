@@ -11,6 +11,7 @@ gem "turbo-rails"
 gem "stimulus-rails"
 gem "jbuilder"
 gem "bootsnap", require: false
+gem "faker"
 
 group :development, :test do
   gem "sqlite3", "~> 1.4"
