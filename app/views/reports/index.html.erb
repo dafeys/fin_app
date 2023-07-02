@@ -4,7 +4,7 @@
   <%= form_with url: reports_report_path, method: :get do |f|%>
     <div class="form-group">
       <%= f.label :date_start, "Starting from:" %>
-      <%= f.date_field :date_start, value: (Time.now-1.month).strftime('%Y-%m-%d'), class: "form-control", style: "width: 19rem" %><br>
+      <%= f.date_field :date_start, value: (Time.now-1.month).strftime('%Y-%m-%d'), max: Date.today.end_of_day, class: "form-control", style: "width: 19rem" %><br>
     </div>
 
     <div class="form-group">

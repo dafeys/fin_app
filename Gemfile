@@ -12,6 +12,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 gem "bootsnap", require: false
 gem "faker"
+gem "kaminari"
 
 group :development, :test do
   gem "sqlite3", "~> 1.4"
