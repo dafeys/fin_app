@@ -3,10 +3,11 @@ class ReportsController < ApplicationController
   end
 
   def report
-    if params[:report_type] == "category"
+    case params[:report_type]
+    when "category"
       report_by_category
       render 'report_by_category'
-    elsif params[:report_type] == "dates"
+    when "dates"
       report_by_dates
       render 'report_by_dates'
     end
@@ -15,10 +16,10 @@ class ReportsController < ApplicationController
   def report_by_category
     date_range = parse_date_range
 
-    category_totals = Category.joins(:operations)
+    category_totals = Category.includes(:operations)
                               .where(operations: { odate: date_range })
                               .group(:id)
-                              .pluck(:name, 'SUM(operations.amount) AS total_cost')
+                              .pluck(:name, 'SUM(operations.amount)')
                               #.select('categories.*, SUM(operations.amount) AS total_cost')
         
     @category_names, @category_costs = category_totals.transpose 
@@ -38,12 +39,14 @@ class ReportsController < ApplicationController
     date_range = parse_date_range
 
     daily_costs = Operation.group("DATE(odate)")
-                           .where(operations: { odate: date_range }) 
-                           .pluck("DATE(odate) AS day", "SUM(amount) AS total_cost")
+                           .where(odate: date_range) 
+                           .pluck("DATE(odate)", "SUM(amount)")
                            #.select("DATE(odate) AS day, SUM(amount) AS total_cost")
 
-    @days, @days_costs = daily_costs.transpose
-  end
+    #@days, @days_costs = daily_costs.transpose
+    @days = daily_costs.map { |data| "#{data[0]}" } # fly.io date format: Wed, 14 Jun 2023
+    @days_costs = daily_costs.map { |data| data[1] }
+ end
 
   private
 
