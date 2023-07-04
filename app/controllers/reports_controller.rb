@@ -51,8 +51,14 @@ class ReportsController < ApplicationController
   private
 
   def parse_date_range
-    date_start = Date.parse(params[:date_start]).beginning_of_day
-    date_end = Date.parse(params[:date_end]).end_of_day
+    if params[:date_start] && params[:date_end] && params[:date_start]!='' && params[:date_end]!=''
+      date_start = Date.parse(params[:date_start]).beginning_of_day
+      date_end = Date.parse(params[:date_end]).end_of_day
+    else
+      date_start = 30.days.ago.beginning_of_day
+      date_end = Time.current.end_of_day
+    end
+
     date_start..date_end
   end
 
