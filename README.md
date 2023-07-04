@@ -1,24 +1,28 @@
-# README
+Welcome to my Fin App
+=====================
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a web application for managing categories and transactions.
 
-Things you may want to cover:
+Features:
 
-* Ruby version
+*   View and manage [Categories]
+*   View and manage [Operations]
+*   Generate [Reports] based on categories and dates
 
-* System dependencies
+Technologies Used:
 
-* Configuration
+*   Ruby on Rails 7
+*   Bootstrap 5
+*   SQLite for development and Postgresql for production
 
-* Database creation
+Improvements that I would like to make:
 
-* Database initialization
+*   Add authentication and authorization (devise gem)
+*   Add an admin user who can manage users
+*   Add search and filtering functionality
+*   Implement more data validation and error handling
+*   Add to-do list
 
-* How to run the test suite
+Links:
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+*   [GitHub Repository](https://github.com/dafeys/fin_app)
