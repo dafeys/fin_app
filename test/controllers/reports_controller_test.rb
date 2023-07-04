@@ -1,18 +1,39 @@
 require "test_helper"
 
 class ReportsControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
+
+  test "Index for reports" do
     get reports_index_url
-    assert_response :success
+    assert_equal("index", @controller.action_name)
   end
 
-  test "should get report_by_category" do
-    get reports_report_by_category_url
-    assert_response :success
+  test "Render report_by_category if report_type: category " do
+    get reports_report_url, params: {
+          report_type: "category"
+        }
+    assert_template("report_by_category", @controller.action_name)
   end
 
-  test "should get report_by_dates" do
-    get reports_report_by_dates_url
-    assert_response :success
+  test "Render report_by_dates if report_type: dates" do
+    get reports_report_url, params: {
+          report_type: "dates"
+        }
+    assert_template("report_by_dates", @controller.action_name)
   end
+
+  test "Select 1 month for category report" do
+    date_start = 30.days.ago.beginning_of_day
+    date_end = Time.current.end_of_day
+
+    get reports_report_url, params: { 
+          report_type: "category",
+           date_start: date_start,
+             date_end: date_end 
+          }
+
+    assert_response :success
+    assert_template :report_by_category
+  end
+
+
 end

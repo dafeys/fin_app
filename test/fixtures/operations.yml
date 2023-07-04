@@ -1,13 +1,28 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+<% (1..10).each do |category_number| %>
+<% category_name = "category#{category_number}" %>
+<% 20.times do |index| %>
+operation<%= index + 1 %>:
+  amount: <%= rand(10..1000) %>
+  odate: <%= Faker::Time.between(from: 2.months.ago, to: Time.now) %>
+  description: <%= Faker::Lorem.sentence %>
+  category: <%= category_name %>
+<% end %>
+<% end %>
 
-one:
-  amount: 9.99
-  odate: 2023-06-26 23:27:14
-  description: MyString
-  category: one
+operation1:
+  amount: 100
+  odate: <%= Time.now %>
+  description: Sample operation 1
+  category: category1
 
-two:
-  amount: 9.99
-  odate: 2023-06-26 23:27:14
-  description: MyString
-  category: two
+operation2:
+  amount: 200
+  odate: <%= Time.now %>
+  description: Sample operation 2
+  category: category2
+
+operation3:
+  amount: 150
+  odate: <%= Time.now %>
+  description: Sample operation 3
+  category: category3

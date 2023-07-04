@@ -1,9 +1,39 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+category1:
+  name: Donations
+  description: Donations for our victory
 
-one:
-  name: MyString
-  description: MyString
+category2:
+  name: Grocery shoppings
+  description: Shopping in grocery stores
 
-two:
-  name: MyString
-  description: MyString
+category3:
+  name: Travel expenses
+  description: Expenses incurred during business trips
+
+category4:
+  name: Office supplies
+  description: Purchasing stationery and office supplies
+
+category5:
+  name: Utilities
+  description: Payments for electricity, water, and other utilities
+
+category6:
+  name: Marketing expenses
+  description: Promotional activities and advertising costs
+
+category7:
+  name: Equipment maintenance
+  description: Maintenance and repair expenses for equipment
+
+category8:
+  name: Staff salaries
+  description: Payments for employee wages and salaries
+
+category9:
+  name: Rent
+  description: Monthly rent for office or workspace
+
+category10:
+  name: Training and development
+  description: Costs associated with employee training and skill development
