@@ -1,4 +1,6 @@
 class ReportsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
   end
 
@@ -17,7 +19,8 @@ class ReportsController < ApplicationController
     date_range = parse_date_range
 
     category_totals = Category.includes(:operations)
-                              .where(operations: { odate: date_range })
+                              .where(user_id: current_user, operations: { odate: date_range })
+                              #.where(operations: { odate: date_range })
                               .group(:id)
                               .pluck(:name, 'SUM(operations.amount)')
                               #.select('categories.*, SUM(operations.amount) AS total_cost')
@@ -39,7 +42,9 @@ class ReportsController < ApplicationController
     date_range = parse_date_range
 
     daily_costs = Operation.group("DATE(odate)")
-                           .where(odate: date_range) 
+                           .includes(:category)
+                           .where(category: { user_id: current_user }, odate: date_range)
+                           #.where(odate: date_range) 
                            .pluck("DATE(odate)", "SUM(amount)")
                            #.select("DATE(odate) AS day, SUM(amount) AS total_cost")
 
