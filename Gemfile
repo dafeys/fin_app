@@ -13,6 +13,7 @@ gem "jbuilder"
 gem "bootsnap", require: false
 gem "faker"
 gem "kaminari"
+gem "devise"
 
 group :development, :test do
   gem "sqlite3", "~> 1.4"

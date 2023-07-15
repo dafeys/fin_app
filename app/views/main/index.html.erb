@@ -1,28 +1,38 @@
 <div class="container">
-    <h1>Welcome to my Fin App</h1>
-    <p>This is a web application for managing categories and transactions.</p>
-    <p>Features:</p>
-    <ul>
-      <li>View and manage <%= link_to "Categories", categories_path, class:"link-success" %></li>
-      <li>View and manage <%= link_to "Operations", operations_path, class:"link-success" %></li>
-      <li>Generate <%= link_to "Reports", reports_index_path, class:"link-success" %> based on categories and dates</li>
-    </ul>
-    <p>Technologies Used:</p>
-    <ul>
-      <li>Ruby on Rails 7</li>
-      <li>Bootstrap 5</li>
-      <li>SQLite for development and Postgresql for production</li>
-    </ul>
-    <p>Improvements that I would like to make:</p>
-    <ul>
-      <li>Add authentication and authorization (devise gem)</li>
-      <li>Add an admin user who can manage users</li>
-      <li>Add search and filtering functionality</li>
-      <li>Implement more data validation and error handling</li>
-      <li>Add to-do list</li>
-    </ul>
-    <p>Links:</p>
-    <ul>
-      <li><a href="https://github.com/dafeys/fin_app">GitHub Repository</a></li>
-    </ul>
+  <div class="row">
+    <div class="col-8">
+      <h1>Welcome to my Fin App</h1>
+      <p>This is a web application for managing categories and transactions.</p>
+      <p>Features:</p>
+      <ul>
+        <li><%= link_to "Create", new_user_registration_path, class:"link-success"%>, log in, sign out, and delete user</li>
+        <li>View and manage <%= link_to "Categories", categories_path, class:"link-success" %></li>
+        <li>View and manage <%= link_to "Operations", operations_path, class:"link-success" %></li>
+        <li>Generate <%= link_to "Reports", reports_index_path, class:"link-success" %> based on categories and dates</li>
+      </ul>
+      <p>Technologies Used:</p>
+      <ul>
+        <li>Ruby on Rails 7</li>
+        <li>Bootstrap 5</li>
+        <li>SQLite for development and Postgresql for production</li>
+      </ul>
+      <p>Improvements that I would like to make:</p>
+      <ul>
+        <li style="color: grey; text-decoration: line-through;">Add authentication and authorization (devise gem)</li>
+        <li>Add an admin user who can manage users</li>
+        <li>Add search and filtering functionality</li>
+        <li>Implement more data validation and error handling</li>
+        <li>Add to-do list</li>
+      </ul>
+      <p>Links:</p>
+      <ul>
+        <li><a href="https://github.com/dafeys/fin_app">GitHub Repository</a></li>
+      </ul>
+    </div>
+    <div class="col-4">
+      <% unless user_signed_in? %>
+        <%= render "login_form" %>
+      <% end %>
+    </div>
   </div>
+</div>

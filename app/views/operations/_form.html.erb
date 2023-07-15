@@ -13,7 +13,7 @@
 
   <div class="form-group">
     <%= form.label :category_id, "Category:" %>
-    <%= form.collection_select :category_id, Category.order(:name), :id, :name, { prompt: true } , { class: "form-select" } %>
+    <%= form.collection_select :category_id, current_user.categories.order(:name), :id, :name, { prompt: true } , { class: "form-select" } %>
   </div>
   <br>
   <div class="form-group">
