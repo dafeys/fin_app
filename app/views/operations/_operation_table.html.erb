@@ -18,7 +18,7 @@
         <tr>
           <td><%= operation.category.name %></td>
           <td><%= operation.amount %></td>
-          <td><%= operation.odate %></td>
+          <td><%= operation.format_odate %></td>
           <td><%= operation.description %></td>
           <td><%= link_to "Edit", edit_operation_path(operation), class:"btn btn-warning btn-sm" %></td>
           <td><%= link_to "Show", operation_path(operation), class: "btn btn-outline-dark btn-sm" %></td>
