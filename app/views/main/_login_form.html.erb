@@ -5,7 +5,7 @@
   <%= form_for(:user, :url => session_path(:user)) do |f| %>
 
   <div class="form-group">
-    <%= f.label :email, "email:" %>
+    <%= f.label :email, "<span>&#9993;</span> email:".html_safe %>
     <%= f.text_field :email, value: "foo@bar.com", class: "form-control" %>
     <small class="text-muted">You can use foo@bar.com as an example user</small>
   </div>
