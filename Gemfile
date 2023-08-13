@@ -12,7 +12,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 gem "bootsnap", require: false
 gem "faker"
-gem "kaminari"
+gem 'pagy', '~> 6.0'
 gem "devise"
 
 group :development, :test do

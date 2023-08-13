@@ -2,26 +2,22 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
 
-  # GET /categories or /categories.json
   def index
+    @pagy, @categories = pagy(current_user.categories.order(id: :asc), items: 10)
+    #@categories = current_user.categories.order(id: :asc).page params[:page]
     #@categories = Category.where(user_id: current_user).order(id: :asc).page params[:page]
-    @categories = current_user.categories.order(id: :asc).page params[:page]
   end
 
-  # GET /categories/1 or /categories/1.json
   def show
   end
 
-  # GET /categories/new
   def new
     @category = Category.new
   end
 
-  # GET /categories/1/edit
   def edit
   end
 
-  # POST /categories or /categories.json
   def create
     @category = Category.new(category_params)
     @category.user = current_user
@@ -37,7 +33,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /categories/1 or /categories/1.json
   def update
     respond_to do |format|
       if @category.update(category_params)
@@ -50,8 +45,7 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # DELETE /categories/1 or /categories/1.json
-  def destroy
+   def destroy
     @category.destroy
 
     respond_to do |format|

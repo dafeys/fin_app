@@ -2,28 +2,23 @@ class OperationsController < ApplicationController
   before_action :set_operation, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
 
-  # GET /operations or /operations.json
   def index
+    @pagy, @operations = pagy(current_user.operations.order(odate: :desc), items: 10)
+    #@operations = current_user.operations.order(odate: :desc).page params[:page]
     #@operations = Operation.includes(:category).where(category: { user_id: current_user }).order(odate: :desc).page params[:page]
-    @operations = current_user.operations.order(odate: :desc).page params[:page]
-
   end
 
-  # GET /operations/1 or /operations/1.json
   def show
   end
 
-  # GET /operations/new
   def new
     @operation = Operation.new
   end
 
-  # GET /operations/1/edit
   def edit
   end
 
-  # POST /operations or /operations.json
-  def create
+   def create
     @operation = Operation.new(operation_params)
 
     respond_to do |format|
@@ -37,7 +32,6 @@ class OperationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /operations/1 or /operations/1.json
   def update
     respond_to do |format|
       if @operation.update(operation_params)
@@ -50,8 +44,7 @@ class OperationsController < ApplicationController
     end
   end
 
-  # DELETE /operations/1 or /operations/1.json
-  def destroy
+   def destroy
     @operation.destroy
 
     respond_to do |format|
